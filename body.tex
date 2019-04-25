@@ -1,0 +1,91 @@
+\addtocounter{chapter}{1}
+\setcounter{section}{0}
+\setcounter{figure}{0}
+\chapter*{\thechapter. Documents and Software Repositories}
+\addcontentsline{toc}{section}{Documents and Software Repositories}
+\section{Documents Repository}
+
+The documents repository is hosted using SVN, and can be accessed on
+
+\url{bigmill.cs.st-andrews.ac.uk/local/svn/serums}.
+\noindent
+All project participants have
+been granted access to this server. The overall organisation of the
+repository, starting from the directories at the top level, is shown 
+in the table below
+
+%\begin{table}
+\begin{tabular}{|p{2.5cm}|p{8.9cm}|}
+\hline
+\textbf{Directory} & \textbf{Content} \\
+\hline \hline
+\emph{Deliverables} & \Serums{} deliverables, with the following subdirectories: \emph{DX.X} for deliverable X.X, \emph{Template} for the deliverable template, \emph{PeriodX} for deliverables that belong to project period X \\
+%\hline
+%\emph{Documentation} & Documentation about \RePhrase{} tools \\
+\hline
+\emph{FactSheet} & \Serums{} fact sheet \\
+\hline \emph{Logos} & Logos of the project and the institutions \\
+\hline \emph{Management} & Documents related to the management of the project,
+including budget, periodic reports, review letters, IPR and grant agreement \\
+\hline \emph{Media} & Media files related to the project, including photos and videos \\
+\hline \emph{Meetings} & Material related to project meetings (e.g.~minutes) \\
+\hline \emph{Papers} & Papers produced during the project, divided into
+accepted ones (in the \emph{Accepted} subdirectory) and draft ones (in the
+\emph{Draft} subdirectory) \\
+\hline \emph{Poster} & \Serums{} posters \\
+\hline \emph{Proposal} & Grant proposal documents, including all the DoWs \\
+\hline \emph{QRCode} & QR code \\
+\hline \emph{Reviews} & Material related to project reviews \\
+\hline
+\end{tabular}
+
+The most commonly used commands for managing a repository are
+\begin{itemize}
+\item \lstinline{svn co <repository_url>} for checking out a fresh copy  of a repository. For example, the \Serums{} repository can be checked out using
+SSH access by executing a command
+
+\begin{lstlisting}[basicstyle=\small]
+svn co svn+ssh://<username>@bigmill.cs.st-andrews.ac.uk/local/svn/serums
+\end{lstlisting}
+
+\item \lstinline{svn up} for updating the repository and fetching changes
+\item \lstinline{svn commit} for committing changes to the repository
+\item \lstinline{svn add <files>} for adding files/directories to the repository
+\item \lstinline{svn rm <files>} for deleting files from the repository. Deleted files will not appear in next revision.
+\end{itemize}
+%\end{table}
+
+\section{Software Repository}
+
+A separate repositorty 
+for software products that will be developed over the
+course of the project has been created on GitHub. This allows collaboration
+between project partners on the development of tools, as well as keeping
+separate private software branches by individuals. The repository was created using the
+University of St Andrews account, which enables us to have a private repository that will
+not be accessible (not even in read-only form) by any unauthorised users. The address of the repository is
+\url{Https://github.com/uoscompsci/Serums}.
+
+The most useful commands for managing a software Git repository are
+\begin{itemize}
+\item 
+\lstinline{git clone <repository_url>} for checking out a fresh copy of a repository. For example, a command to
+checkout the \Serums{} repository is 
+
+\begin{lstlisting}[basicstyle=\small]
+git clone https://github.com/uoscompsci/Serums.git
+\end{lstlisting}
+
+\item \lstinline{git add <file>} for adding changes in directories and files to the next commit.
+
+\item \lstinline{git commit} for committing changes.
+
+\item \lstinline{git checkout <branch>} for checking out a new branch.
+
+\item \lstinline{git fetch <remote>} for downloading changes from the remote server, but without integrating them.
+
+\item \lstinline{git pull <remote> <branch>} for downloading changes from the remote servers and integrating them into a specified branch.
+
+\item \lstinline{git push <remote> <branch>} for pushing local changes to the remote server into a specified branch.
+
+\end{itemize}

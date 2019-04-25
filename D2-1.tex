@@ -1,0 +1,33 @@
+\documentclass[a4paper,11pt,twoside]{report}
+
+%% Rememeber to use svn propset svn:keywords "Revision" Dxx.tex
+\def\@Revision{$Revision$}
+\input{frontmatter.tex}
+
+\usepackage{listings}
+\usepackage{cite}
+\usepackage{fancyvrb}
+\lstset{basicstyle=\ttfamily,stringstyle=\ttfamily,
+        aboveskip=3mm, belowskip=3mm,
+        language=ML,mathescape=true, 
+        morekeywords={Box, box, ->, .., ||, |, *, **, net}}
+
+\begin{document}
+
+\begin{changelog}
+\change{29/01/19}{Vladimir Janjic}{USTAN}{Original Version}  
+\end{changelog}
+
+\clearpage
+\input{exec_summary.tex}
+\clearpage
+\tableofcontents
+\clearpage
+\input{introduction.tex}
+\input{body.tex}
+%\input{conclusion.tex}
+
+%\bibliography{RePhrase}{}
+%\bibliographystyle{plain}
+
+\end{document}

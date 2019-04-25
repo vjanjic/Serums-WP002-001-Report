@@ -1,0 +1,276 @@
+\newif\if@deliverable
+\newif\if@teamreport
+\newif\if@wpreport
+\newif\if@techreport
+\DeclareOption{deliverable}
+  {\@deliverabletrue}
+\DeclareOption{teamreport}
+  {\@teamreporttrue}
+\DeclareOption{wpreport}
+  {\@wpreporttrue}
+\DeclareOption{techreport}
+  {\@techreporttrue}
+\ProcessOptions
+%
+\def\SERUMS{\sc Serums}
+%
+\def\reportnumber#1{\def\@reportnumber{#1}}
+\def\reportmonth#1{\def\@reportmonth{#1}}
+\def\reportyear#1{\def\@reportyear{#1}}
+\def\email#1{\def\@email{#1}}
+\def\@reportnumber{?}
+\def\@reportmonth{}
+\def\@reportyear{}
+%
+\def\ReportNumber#1{\def\@ReportNumber{#1}}
+\def\DeliverableNumber#1{\def\@DeliverableNumber{#1}}
+\def\DeliverableNumber#1{\def\@DeliverableNumber{#1}}
+\def\DeliverableTitle#1{\def\@DeliverableTitle{#1}}
+\def\DueDate#1{\def\@DueDate{#1}}
+\def\SubmissionDate#1{\def\@SubmissionDate{#1}}
+\def\LeaderName#1{\def\@LeaderName{#1}}
+\def\Authors#1{\def\@Authors{#1}}
+\def\DeliverableResponsible#1{\def\@DeliverableResponsible{#1}}
+\def\Institution#1{\def\@Institution{#1}}
+\def\InstitutionAddress#1{\def\@InstitutionAddress{#1}}
+\def\EditorAddress#1{\def\@EditorAddress{#1}}
+\def\WorkPackage#1{\def\@WorkPackage{#1}}
+\def\TaskNumber#1{\def\@TaskNumber{{\@emph Task number:} #1}}
+\def\Version#1{\def\@Version{#1}}
+\def\SVNRevision#1{\def\@SVNRevision{#1}}
+\def\LastEditor#1{\def\@LastEditor{#1}}
+%%\def\Reviewers#1{\def\@ReviewersTitle{\@bold Reviewers:}\def\@Reviewers{#1}}
+\def\Reviewers#1{\@Reviewerstrue\def\@Reviewers{#1}}
+\def\LastDate#1{\def\@LastDate{#1}}
+\def\DisseminationPU{\def\@IsPU{$\surd$}}
+\def\DisseminationPP{\def\@IsPP{$\surd$}}
+\def\DisseminationRE{\def\@IsRE{$\surd$}}
+\def\DisseminationCO{\def\@IsCO{$\surd$}}
+\newcommand{\Revision}[5]{\@writefile{cov}{\hline \hfil #1\hfil&#2&#3&#4&#5\\}}
+\newcommand{\Task}[3]{\@Taskstrue\@writefile{par}{\hline #1&#2&#3\\}}
+
+\def\@ReportNumber{XXXX}
+\def\@DeliverableNumber{XXXX}
+\def\@DeliverableTitle{XXXX}
+\def\@DueDate{XXXX}
+\def\@SubmissionDate{XXXX}
+\def\@LeaderName{XXXX}
+\def\@DeliverableResponsible{XXXX}
+\def\@Institution{XXXX}
+\def\@InstitutionAddress{XXXX}
+\def\@EditorAddress{XXXX}
+\def\@WorkPackage{XXXX}
+\def\@TaskNumber{~}
+\def\@Version{XXXX}
+\def\@SVNRevision{XXXX}
+\def\@LastEditor{XXXX}
+\def\@Reviewers{~}
+\newif\if@Reviewers
+\newif\if@Tasks
+\@Tasksfalse
+%\def\@ReviewersTitle{~}
+\def\@LastDate{XXXX}
+\def\@IsPP{}
+\def\@IsPU{}
+\def\@IsRE{}
+\def\@IsCO{}
+\def\@Revision{}
+\def\@Task{}
+
+%%cover fonts
+\def\@SERUMSFont{\fontsize{24}{28}\usefont{T1}{ptm}{b}{n}\selectfont}
+\def\@TitleFont{\fontsize{18}{24}\usefont{T1}{ptm}{b}{n}\selectfont}
+\def\@Large{\fontsize{18}{21}\usefont{T1}{ptm}{m}{n}\selectfont}
+\def\@Small{\fontsize{9}{11}\usefont{T1}{ptm}{m}{n}\selectfont}
+\def\@font{\fontsize{12}{12}\usefont{T1}{ptm}{m}{n}\selectfont}
+\def\@sc{\fontshape{sc}\selectfont}
+\def\@emph{\fontshape{sl}\selectfont}
+\def\@bold{\fontseries{b}\selectfont}
+
+
+\newdimen\@CoverPageWidth
+\newdimen\@CoverPageHeight
+\newdimen\@TableWidth
+\@CoverPageWidth=\paperwidth
+\@CoverPageHeight=\paperheight
+\@TableWidth=\paperwidth
+\advance\@CoverPageWidth by -1.5in
+\advance\@CoverPageHeight by -2in
+\advance\@TableWidth by -5cm
+\newdimen\TableWidth
+\TableWidth=\@TableWidth
+
+% \newwrite\tf@cov
+% \immediate\openout \tf@cov \jobname.cov\relax
+% \@writefile{cov}{\fontsize{9}{11}\usefont{T1}{ptm}{m}{n}\selectfont}
+% \@writefile{cov}{\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|p{0.07\linewidth}|p{0.07\linewidth}|p{0.23\linewidth}|p{0.1\linewidth}|p{0.4\linewidth}|}}
+% \@writefile{cov}{\multicolumn{5}{l}{{\fontseries{b}\selectfont Revision history:}}\\}
+% \@writefile{cov}{\hline}
+% \@writefile{cov}{{\fontseries{b}\selectfont Version}  &{\fontseries{b}\selectfont Date} &{\fontseries{b}\selectfont Authors} &{\fontseries{b}\selectfont Institution} & {\fontseries{b}\selectfont Section affected, comments} \\}
+
+% \newwrite\tf@par
+% \immediate\openout \tf@par \jobname.par\relax
+% \@writefile{par}{\fontsize{9}{11}\usefont{T1}{ptm}{m}{n}\selectfont}
+% \@writefile{par}{\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}|p{0.07\linewidth}|p{0.45\linewidth}|p{0.4\linewidth}|}}
+% \@writefile{par}{\multicolumn{3}{l}{{\fontseries{b}\selectfont Tasks related to this deliverable:}}\\}
+% \@writefile{par}{\hline}
+% \@writefile{par}{{\fontseries{b}\selectfont Task No.}  &{\fontseries{b}\selectfont Task description} &{\fontseries{b}\selectfont Partners involved$^\circ$}  \\}
+
+
+\newcommand{\@CoverBody}{
+\@font
+\parbox{\linewidth}{\centering
+ \vspace{15mm}
+ {Project no. 826278}\par
+ \vspace{6mm}
+ {\@SERUMSFont \SERUMS{}}\par
+ \vspace{6mm}
+ {Research \& Innovation Action (RIA)}\par
+ {\@sc \large{\textbf{Securing Medical Data in Smart Patient-Centric Healthcare Systems}}}\par
+ \vspace{10mm}
+ \if@deliverable
+  {\@TitleFont  \@DeliverableTitle\\
+   \vspace{3mm}
+   \@DeliverableNumber}\par
+  \vspace{6mm}
+  \begin{tabular}{r@{: }l}
+   Due date of deliverable& \@DueDate\\
+%   Actual submission date& \@SubmissionDate
+  \end{tabular}\par
+ \fi
+ \if@techreport
+  {\@TitleFont  \@DeliverableTitle\\
+   \vspace{3mm}}
+  {\SERUMS{} Technical Report \# \@ReportNumber}\par
+  \vspace{6mm}
+  {\@Authors \vspace{1cm} }\par
+ \fi
+
+}
+\parbox{\linewidth}{\flushright
+ \vspace{10mm} 
+ \if@techreport
+    Report Registration Date: \@SubmissionDate
+ \else
+   {\@emph Start date of project:} January 1$^{st}$, 2019\par
+   \vspace{5mm}
+ \fi
+ \if@deliverable
+  {\@emph Type:} Deliverable\par
+  {\@emph WP number:} \@WorkPackage\par
+  %{\@TaskNumber}\par
+  \vspace{5mm}
+  {\@emph Responsible institution:} \@DeliverableResponsible\par
+  {\@emph Editor and editor's address:} \@EditorAddress\par
+ \fi
+ \if@teamreport
+  \vspace{5mm}
+  {\@emph Report type:} Team Leader's Progress Report\par
+  \vspace{5mm}
+  {\@emph Name of Team leader:} \@LeaderName\par
+  {\@emph Institution \& address:} \@InstitutionAddress\par
+ \fi
+ \if@wpreport
+  {\@emph Report type:} WP Leader's Progress Report\par
+  {\@emph WP number:} \@WorkPackage\par
+  \vspace{5mm}
+  {\@emph Name of WP leader:} \@LeaderName\par
+  {\@emph Institution \& address:} \@InstitutionAddress\par
+ \fi
+}
+\vfill
+%\parbox{\linewidth}{\centering
+% \vspace{5mm}
+% {Version \@Version\ / Last edited by \@LastEditor\ / \@LastDate}\par
+% {$Revision: 1902 $}\par
+% {Version \@Version \  (\@SVNRevision)}\par
+% {}\par
+% \vspace{5mm}}
+\vfill
+\parbox{\linewidth}{\centering
+% \vspace{5mm}
+% {Version \@Version\ / Last edited by \@LastEditor\ / \@LastDate}\par
+% {$Revision: 1902 $}\par
+% {Version \@Version \  (\@SVNRevision)}\par
+{Version \@Version}\par
+ {}\par
+ \vspace{5mm}}
+{
+\newdimen\@msize
+\@msize=\linewidth
+\advance\@msize by -1cm
+\advance\@msize by -6\tabcolsep
+\begin{tabular}{ | p{0.7cm} | p{\@msize} | p{0.3cm} |}
+ \hline
+ \multicolumn{3}{|c|}{{\@bold Project co-funded by the European Commission within the Horizon 2020 Programme}}\\
+ \hline
+ \multicolumn{3}{|c|}{{\@bold Dissemination Level}}\\
+ \hline
+ {\@bold PU} & Public & \@IsPU\\
+ \hline
+ {\@bold PP} & Restricted to other programme participants (including the Commission Services) & \@IsPP\\
+ \hline
+ {\@bold RE} & Restricted to a group specified by the consortium (including the Commission Services) & \@IsRE\\
+ \hline
+ {{\@bold CO}} & Confidential, only for members of the consortium (including the Commission Services) & \@IsCO\\
+ \hline
+ \end{tabular}
+ }
+}
+
+\newcommand{\@PrintCoverPage}{\bgroup\global\setbox255\vbox{%
+% \@writefile{cov}{\hline \end{tabular*}}
+% \immediate\closeout\tf@cov
+%  \@writefile{par}{\hline \multicolumn{3}{r}{~}\\}
+%  \@writefile{par}{\multicolumn{3}{l}{\rule{3cm}{0.2pt} }\\}
+%  \@writefile{par}{\multicolumn{3}{l}{{$^\circ$This task list may not be equivalent to the list of partners contributing as authors to the deliverable}}\\}
+%  \@writefile{par}{\multicolumn{3}{l}{{$^*$Task leader}}\\}
+%  \@writefile{par}{\end{tabular*}}
+%  \immediate\closeout\tf@par
+ \vspace*{-.25in}%
+ \noindent\hspace*{-.25in}%
+ \rlap{
+  \begin{minipage}[t][\@CoverPageHeight][t]{\@CoverPageWidth}%
+   \parbox{\linewidth}{
+    \begin{minipage}[c]{5cm}
+%     \includegraphics[trim=40mm 30mm 15mm 30mm,clip,width=8cm]{figures/PARAPHRASE-logo.pdf}
+     \includegraphics[width=4.5cm]{figures/Serums.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{3.5cm}
+     \includegraphics[width=3.5cm]{figures/H2020.jpg}
+    \end{minipage}
+   }
+   \@CoverBody
+  \end{minipage}
+ }%
+}\egroup\shipout\box255}
+
+
+\newcommand{\@PrintBackCoverPage}{}
+
+
+
+\AtBeginDocument{\@PrintCoverPage\@PrintBackCoverPage\cleardoublepage}
+
+%% Added change log -- KH
+
+\newcounter{change}
+
+\newenvironment{changelog}{%
+\clearpage
+\setcounter{change}{0}
+\section*{Change Log}
+%
+\begin{tabular}{||p{0.8cm}|p{1.2cm}|p{3cm}|p{1.1cm}|p{7.5cm}||}%
+\hline\hline%
+\textbf{Rev.} & \textbf{Date} & \textbf{Who} & \textbf{Site} & \textbf{What}%
+}{%
+\\\hline\hline%
+\end{tabular}%
+\clearpage%
+}
+
+\newcommand{\change}[4]{\stepcounter{change}%
+\\\hline%
+\arabic{change}&#1&#2&#3&#4}

@@ -1,0 +1,94 @@
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[deliverable]{SERUMSCoverPage}
+\usepackage{url}
+%\usepackage{version}
+\usepackage{longtable}
+%\usepackage{rotating}
+\usepackage[final]{listings}
+\usepackage[draft]{fixme}
+\PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks,
+bookmarks]{hyperref}
+\usepackage{color}
+\usepackage{paralist}
+\usepackage{hangcaption}
+\usepackage{tabularx}
+%\usepackage{showkeys}
+
+
+\usepackage{boxedminipage}
+\definecolor{ErrorRed}{rgb}{1,0.80,0.80}
+\definecolor{NoteBlue}{rgb}{0.8,0.80,1.0}
+\definecolor{correctGreen}{rgb}{0.8,1.0,0.8}
+\newcommand{\annotate}[1]{~\\\noindent\colorbox{NoteBlue}{\begin{minipage}[t]{\linewidth}#1\end{minipage}}}
+\newcommand{\todo}[2]{~\\\noindent\colorbox{ErrorRed}{\begin{minipage}[t]{\linewidth}TODO by \textbf{#1}: #2\end{minipage}}}
+\newcommand{\correct}[3]{~\\\noindent\colorbox{correctGreen}{\begin{minipage}[t]{\linewidth}CORRECT from \textbf{#1}, to be corrected by \textbf{#2}: #3\end{minipage}}}
+\newcommand{\nop}[1]{}
+
+\setcounter{secnumdepth}{3}
+\newcommand{\fix}[2]{\fixme[margin]{\textbf{[from #1:]} #2}}
+
+%activate or deactivate comments
+%\renewcommand{\missing}[1]{}
+%\renewcommand{\annotate}[1]{}
+%\renewcommand{\todo}[2]{}
+%\renewcommand{\correct}[3]{}
+%\renewcommand{\todointab}[2]{}
+%\renewcommand{\fix}[2]{}
+%\renewcommand{\fixme}[1]{}
+
+\newcommand{\Serums}{\textbf{Serums}}
+
+\newcommand{\Equ}[1]{Equation~\ref{#1}}         %ref to equation
+\newcommand{\BEqu}[1]{Equation~\ref{#1}}        %ref to equation
+\newcommand{\Def}[1]{Definition~\ref{#1}}         %ref to definition
+\newcommand{\BDef}[1]{Definition~\ref{#1}}        %ref to definition
+\newcommand{\Them}[1]{Theorem~\ref{#1}}     %ref to theorem
+\newcommand{\BThem}[1]{Theorem~\ref{#1}}    %ref to theorem
+\newcommand{\Fig}[1]{Figure~\ref{#1}}       %ref to figure
+\newcommand{\BFig}[1]{Figure~\ref{#1}}      %ref to figure
+\newcommand{\Tab}[1]{Table~\ref{#1}}        %ref to table
+\newcommand{\BTab}[1]{Table~\ref{#1}}       %ref to table
+\newcommand{\Sec}[1]{Section~\ref{#1}}      %ref to section
+\newcommand{\BSec}[1]{Section~\ref{#1}}     %ref to section
+\newcommand{\SSec}[1]{Subsection~\ref{#1}}  %ref to subsection
+\newcommand{\BSSec}[1]{Subsection~\ref{#1}} %ref to subsection
+\newcommand{\Annex}[1]{Annex~\ref{#1}}      %ref to annex
+\newcommand{\BAnnex}[1]{Annex~\ref{#1}}     %ref to annex
+
+%other stuff, for pasted source code
+\newcommand{\cmd}[1]{\texttt{#1}}
+\lstset{
+    basicstyle=\footnotesize,
+    tabsize=4,
+    breaklines=true,
+    frame=tb,
+    breakindent=4ex,
+    postbreak=(cont.)
+}
+
+
+
+%\hyphenation{com-mand,com-mand-line}
+
+
+%data for PARADeliverable header
+\DeliverableNumber{D1.2}
+\DeliverableTitle{Internal Software Repository}
+\DeliverableResponsible{University of St Andrews}
+\EditorAddress{Vladimir Janjic, University of St Andrews }
+\WorkPackage{WP1}
+\DueDate{31st January 2019}
+\SubmissionDate{31st January 2019}
+\LeaderName{Vladimir Janjic}
+\InstitutionAddress{University of St Andrews}
+\Version{1.0}
+\SVNRevision{\@Revision}
+\LastEditor{}
+\LastDate{}
+\DisseminationCO
+
+
+%%%%%%%% end of template for the first two pages %%%%%%%
