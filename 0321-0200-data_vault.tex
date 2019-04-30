@@ -1,26 +1,16 @@
-\subsection{What is a Data Vault?}
-\label{sec:datavault}
-
+%\subsection{What is a Data Vault?}
+%\label{sec:datavault}
 Data vault is a set of guidelines on how to how to organise the tables and relationships within a database system. As such can work on top of any database system such as PostgreSQL, a distributed file system such as Hadoop, or even a NoSQL database such as MongoDB. The data vault model itself puts priority on providing long-term historical storage of data from multiple operational systems.
-\\ \\
-\noindent
+%
 The base design principal is single version of the truth (SVOT) that supports data warehousing for either a single centralised database or a distributed synchronised database. This method is accommodating of change. Its adaptability provides resilience over time to changes in the data and data structures.
-\\ \\
-\noindent
+%
 The data vault methodology is based on SEI/CMMI Level 5 best practices.
-\\ \\
-\noindent
-What that means in practice is that it has been designed to take in data from disparate sources and systems and centralise the data in a non-destructive manner. End users do not interact directly with the raw data in the database, they instead interact with a layer of cleansed data which is produced on top in the form of a data warehouse. This means that data is never dropped from the source, even if it is thought to be erroneous, ensuring that full auditablility is built into the system.
-\\ \\
-\noindent
-In our use cases, the hospitals have their data spread across numerous systems within the hospitals' computer infrastructures. In the production of the Smart Patient Health Record (SPHR) we are looking to centralise this data in such a way that it maintains its history.
-\\ \\
-\noindent
-As the project develops, new data sources will be added to the SPHR. In a traditional database model this would require the structure of the database to be altered in order to accommodate this change. With the data vault model however, new sources are easily added into the model with no need to alter the existing foundation.
 
-\\ \\
-\noindent
-This is an example of a data vault:
+In practice, the data vault has been designed to take in data from disparate sources and systems and centralise the data in a non-destructive manner. End users do not interact directly with the raw data in the database, they instead interact with a layer of cleansed data which is produced on top in the form of a data warehouse. This means that data is never dropped from the source, even if it is thought to be erroneous, ensuring that full auditablility is built into the system.
+
+In our use cases, the hospitals have their data spread across numerous systems within the hospitals' computer infrastructures. In the production of the Smart Patient Health Record (SPHR) we are looking to centralise this data in such a way that it maintains its history.
+%
+As the project develops, new data sources will be added to the SPHR. In a traditional database model this would require the structure of the database to be altered in order to accommodate this change. With the data vault model however, new sources are easily added into the model with no need to alter the existing foundation. An example of a data vault for the use case described in Section~\ref{sec:usecase} is given in the figure below.
 
 \begin{figure}[H]
     \centering
@@ -67,44 +57,29 @@ The data vault model is comprised of three different types of tables:
 
 
 
-\section{Reference tables}
+%\section{Reference tables}
 
-Reference tables are a normal part of a healthy data vault model. These will hold look-ups and standards for common codes within the complete data vault.
-
+\noindent
+\emph{Reference tables} are a standard part of a healthy data vault model. They hold look-ups and standards for common codes within the complete data vault.
 This is the area where the standards are stored ready for the data vault to use during the upload.
 
-\section{What is a T-P-O-L-E Data Vault?}
+\subsection{T-P-O-L-E Data Vault as Universal Smarth Patient Health Record Format}
 
-The Time-Person-Object-Location-Event (T-P-O-L-E) Data Vault is a highly specific data vault that reduces all business activities to be generalised as one of five types of hubs.
-
-The hubs are:
+The Time-Person-Object-Location-Event (T-P-O-L-E) Data Vault is a highly specific data vault that is suitable to a variety of business use cases. This is the instance of the data vault that we propose to use as a universal format for smart health patient records. In T-P-O-L-E data vault, there are five types of hubs:
 \begin{itemize}
-    \item Time Hub
-    The time is sub-divided as Date and Time.
-    Prescribes ISO 8601-1:2019 and ISO 8601-2:2019 as standards.
+    \item \emph{Time} hub, where the dates and times of events are stored. It prescribes usage of ISO 8601-1:2019 and ISO 8601-2:2019 as standards for time/date representation.
     
-    \item Person Hub
-    The person involve is record using concept of "Golden Nominal"
-    This type of record is a single person record with a unique reference proven to that single person.
+    \item \emph{Person} hub, where information about persons is stored using the concept of "Golden Nominal". This type of record is a single person record with a unique reference to that person.
     
-    \item Object Hub
-    The objects are any other referable entities involved in the interaction.
-    Examples are:
+    \item \emph{Object} hub, where the objects who represent any other referable entitites involved in the use case are stored. Examples of the objects are:
     \begin{itemize}
         \item Organisations (Legal entity of Bank, Hospital or School)
         \item Physical objects (Bank Card, Vehicle or hospital bed)
         \item Buildings (Physical Bank, Hospital or School)
     \end{itemize}
-    \item Location Hub
-    The location is to one thousandth of a latitude and longitude (i.e. to less than one square meter) using ISO 6709:2008 Standard. (\url{https://www.iso.org/standard/39242.html})
+    \item \emph{Location} hub, where coordinates of the locations are stored. The precision of the coordinates is within one thousandth of a degree of latitude and longitude (i.e. to less than one square meter) using ISO 6709:2008 Standard\footnote{\url{https://www.iso.org/standard/39242.html}}. Note that the location can store different descriptions via location satellites for the same location, e.g.~a location could be a building's location, physical address and a bus stop on a bus route at the same time.
     
-    Note that the location stores different descriptions via location satellites for the same location.
-    
-    Example: a location could be a building's location, physical address and a bus stop on a bus route at the same time.
-    
-    \item Event Hub
-    The event is the individual action or event recorded.
-    
+    \item \emph{Event} hub, where the individual actions or events are stored.
 \end{itemize}
 
 The links are force to be only between these T-P-O-L-E hubs to limit the complexity of the core structure of the model. These links are different for each implementation of the T-P-O-L-E methodology but is high descriptive via meta-data how and what is stored in the links.

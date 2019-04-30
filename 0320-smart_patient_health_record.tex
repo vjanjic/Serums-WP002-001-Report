@@ -1,8 +1,13 @@
+In this chapter, we discuss the concept of Universal Smart Patient Health Record, the aim of which is to provide a general way of representing the patient data that will cover a variety of uses and scenarios, and that will also be machine readable to allow its usage in data fabrication and blockchain technology. In Section~\ref{sec:usphr}, we discuss requirements for format of such universal patient record. we then (Section~\ref{sec:dataVault}) introduce a well-known concept from data science, \emph{data vault}, which we propose to use as this universal format. We then (Section~\ref{sec:cancerData}) describe the format in which the data of the use case described in~\ref{sec:usecase} was originally stored, create a database schema out of it and discuss how the data can be reorganised into data vault. Finally, in Section~\ref{sec:dataCorrelation}, we discuss how we can establish correlation between values of different fields of the patient records (e.g.~whether particular value in one field necessarily implies a particular value, or a range of values, in other field), which is necessary for deriving precise rules required for data fabrication infrastructure of WP4, for generating synthetic but realistic data.
+
 \section{Universal Smart Patient Health Record (USPHR)}
+\label{sec:usphr}
 
 \input{0321-0100-Universal_Smart_Patient_Health_Record.tex}
 
-\section{General Data Vault}
+%\section{General Data Vault}
+\section{Data Vault}
+\label{sec:dataVault}
 
 \input{0321-0200-data_vault.tex}
 
