@@ -1,12 +1,24 @@
 \subsection{What is a Data Vault?}
 \label{sec:datavault}
 
-Data vault modelling is a database modelling methodology design that provide long-term historical storage of data coming in from multiple operational systems.
-%
-The base design principal is single version of the truth (SVOT) that supports data warehousing for either a single centralised database or a distributed synchronised database. This method is accomodating of change. Its adaptability provides resilience over time to changes in the data and data structures.
-%
+Data vault is a set of guidelines on how to how to organise the tables and relationships within a database system. As such can work on top of any database system such as PostgreSQL, a distributed file system such as Hadoop, or even a NoSQL database such as MongoDB. The data vault model itself puts priority on providing long-term historical storage of data from multiple operational systems.
+\\ \\
+\noindent
+The base design principal is single version of the truth (SVOT) that supports data warehousing for either a single centralised database or a distributed synchronised database. This method is accommodating of change. Its adaptability provides resilience over time to changes in the data and data structures.
+\\ \\
+\noindent
 The data vault methodology is based on SEI/CMMI Level 5 best practices.
-\\
+\\ \\
+\noindent
+What that means in practice is that it has been designed to take in data from disparate sources and systems and centralise the data in a non-destructive manner. End users do not interact directly with the raw data in the database, they instead interact with a layer of cleansed data which is produced on top in the form of a data warehouse. This means that data is never dropped from the source, even if it is thought to be erroneous, ensuring that full auditablility is built into the system.
+\\ \\
+\noindent
+In our use cases, the hospitals have their data spread across numerous systems within the hospitals' computer infrastructures. In the production of the Smart Patient Health Record (SPHR) we are looking to centralise this data in such a way that it maintains its history.
+\\ \\
+\noindent
+As the project develops, new data sources will be added to the SPHR. In a traditional database model this would require the structure of the database to be altered in order to accommodate this change. With the data vault model however, new sources are easily added into the model with no need to alter the existing foundation.
+
+\\ \\
 \noindent
 This is an example of a data vault:
 
