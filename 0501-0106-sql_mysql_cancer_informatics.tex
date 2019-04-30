@@ -1,0 +1,119 @@
+\begin{lstlisting}
+CREATE TABLE `hub_event` (
+  `id` integer,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `hub_object` (
+  `id` integer,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `hub_person` (
+  `chi` integer,
+  PRIMARY KEY (`chi`)
+);
+
+CREATE TABLE `hub_time` (
+  `id` integer,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `many_hub_person_has_many_hub_event` (
+  `chi_hub_person` integer,
+  `id_hub_event` integer,
+  `id` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`, `id_hub_event`)
+);
+
+CREATE TABLE `many_hub_person_has_many_hub_object` (
+  `chi_hub_person` integer,
+  `id_hub_object` integer,
+  `id` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`, `id_hub_object`)
+);
+
+CREATE TABLE `many_hub_person_has_many_hub_time` (
+  `chi_hub_person` integer,
+  `id_hub_time` integer,
+  `id` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`, `id_hub_time`)
+);
+
+CREATE TABLE `sat_event_drug_status` (
+  `id` integer,
+  `drug_status` character varying(255),
+  `id_hub_event` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_event`)
+);
+
+CREATE TABLE `sat_object_drug_details` (
+  `id` integer,
+  `drug_type` character(9),
+  `drug_name` character varying(255),
+  `given_drug` numeric,
+  `drug_dose` numeric,
+  `required_dose` numeric,
+  `id_hub_object` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_object`)
+);
+
+CREATE TABLE `sat_object_treatment_details` (
+  `id` integer,
+  `intention` character varying(255),
+  `regime` character varying(255),
+  `cycle` integer,
+  `id_hub_object` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_object`)
+);
+
+CREATE TABLE `sat_object_tumour_group` (
+  `id` integer,
+  `tumour_group` character varying(255),
+  `id_hub_object` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_object`)
+);
+
+CREATE TABLE `sat_person_consultant_chemo` (
+  `id` integer,
+  `consultant_code` character(2),
+  `chi_hub_person` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`)
+);
+
+CREATE TABLE `sat_person_patient_measurements` (
+  `id` integer,
+  `age_at_diagnosis` double precision,
+  `height` numeric,
+  `weight` numeric,
+  `surface_area` numeric,
+  `chi_hub_person` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`)
+);
+
+CREATE TABLE `sat_time_appointment_date` (
+  `id` integer,
+  `appointment_date` date,
+  `id_hub_time` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_time`)
+);
+
+CREATE TABLE `sat_time_last-toxicity_date` (
+  `id` integer,
+  `last_toxicity_date` date,
+  `id_hub_time` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`id_hub_time`)
+);
+
+\end{lstlisting}

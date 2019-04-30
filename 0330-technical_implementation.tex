@@ -1,0 +1,61 @@
+\section{Process overview}
+\begin{itemize}
+    \item Member of use case team with access to the data runs pandas-profiling and produces output HTML files \ref{text:appendixd}
+    \item This is high level overview of the structure of the data, covering common and outlier values, correlations between columns, and data distribution
+    \item With this we can then model the data using pgModeler. This allows us to abstract out the current table definitions into the Data Vault framework \ref{sec:datavault}
+    \item pgModeler also generates the PostgreSQL tables, SQL files, XML schemas, and image files
+    \item From the PostgreSQL tables we can then generate the structure of the HDF5 dataset using the Python program
+    \item The only thing that needs to be supplied at this point are the table names in the database and the desired name of the output dataset, the rest is automatic
+    \item The resulting output is then ready to receive the data
+    \item This Hierarchical Data Format 5 (HDF5) dataset is the Smart Patient Record
+\end{itemize}
+
+\section{The thinking}
+
+By generating the Smart Patient Record in this format we are able to create a separate record per patient that can be independently stored, encrypted, and transmitted. Furthermore, the design is entirely modular so can be expanded upon as and when new data sources become available, or no longer permitted.
+\\ \\
+\noindent
+The HDF5 file itself is naturally compressible during its creation. It can then be compressed even further before transmission which will allow for tiny data packets to be sent over whichever distribution method is chosen. Further advantages are the scalability of the technology and the reliability built into the distributed storage.
+
+\section{Open source}
+Everything that has been chosen to generate the Smart Patient Record so far has been open source and covered by either the MIT or GPL license. This brings the major advantage of the cost being limited to man-hours. Another advantage is the flexibility that this allows for, with us being able to custom design the processes, implementing any level of security or enforcing any level of standard that the project sees fit. 
+\\ \\
+\noindent
+We will however have to be aware that end users will not always feel comfortable about allowing this type of software onto their systems. Once we have the processes in place we believe that we will be able to recreate them under other system restraints that may be more representative of the medical space as a whole. 
+
+\section{The technology}
+The creation of the Smart Patient Record relies on three technologies for the creation of the record: PostgreSQL, Python, and HDF5. Additionally we will use Hadoop for the storage of the records. 
+\\ \\
+\noindent
+PostgreSQL has been chosen primarily due to the modelling software that is available for it. pgModeler is being developed by Raphael A. Silva and is available under the GPL v3 license. By modelling with this software we are able to produce a validated SQL file that we will pass over to IBM as a start point for their data fabrication. 
+\\ \\
+\noindent
+Python is the lynchpin in this trio, with libraries written specifically to profile data, handle connections to PostgreSQL, and output data to HDF5. This enables us to focus our attention on the process and functionality, automating as much as possible.
+\\ \\
+\noindent
+HDF5 offers us a key advantage going forward. As well as being designed to work with large, complex datasets, we will also be able to add metadata to each of the datasets. This will allow us to add in extra information about the data, aiding in the upcoming machine learning parts of the work package.  
+\\ \\
+\noindent
+HDF5 on Hadoop (HDFS) is ultimately how we store the Smart Patient Record. This offers us many advantages throughout the life of the project. As well as being a flexible and scalable storage solution, Hadoop can be integrated into platforms such as Microsoft Azure, Amazon Web Services (AWS), IBM Cloud, and Google Cloud. With Accenture's preference for AWS, we will aim for that as our primary target platform.
+
+\section{Next stage}
+With the format now defined, this PostgreSQL database schema will be handed over to IBM to begin the process of data fabrication. This will involve a process of rule refining as we work alongside our use case supplier to fine tune the constraints of the data, working towards as realistic facsimile of the source data as possible.
+
+Once this data has been fabricated, we will use this to begin building and training our machine learning models as part of WP2.2.
+
+\section{SQL Scripts}
+
+The following SQL script have been prepared to assist the members of the consortium to create the required SQL databases in data engine of their choose.
+
+\subsection{SQL for PostgreSQL}
+
+
+\input{0501-0105-sql_mysql_cancer_informatics_sub.tex}
+
+\subsection{SQL for MySQL}
+
+\input{0501-0105-sql_mysql_cancer_informatics_sub.tex}
+
+\section{XML}
+
+\input{0501-0201-xml_cancer_informatics_sub.tex}

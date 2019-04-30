@@ -1,0 +1,20 @@
+\begin{lstlisting}
+CREATE TABLE `hub_person` (
+  `chi` integer,
+  PRIMARY KEY (`chi`)
+);
+
+CREATE TABLE `hub_event` (
+  `id` integer,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `many_hub_person_has_many_hub_event` (
+  `chi_hub_person` integer,
+  `id_hub_event` integer,
+  `id` integer,
+  PRIMARY KEY (`id`),
+  KEY `FK` (`chi_hub_person`, `id_hub_event`)
+)
+
+\end{lstlisting}

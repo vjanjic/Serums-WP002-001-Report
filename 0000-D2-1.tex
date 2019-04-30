@@ -2,7 +2,8 @@
 
 %% Rememeber to use svn propset svn:keywords "Revision" Dxx.tex
 \def\@Revision{$Revision$}
-\input{frontmatter.tex}
+
+\input{0010-frontmatter.tex}
 
 \usepackage{listings}
 \usepackage{cite}
@@ -11,23 +12,30 @@
         aboveskip=3mm, belowskip=3mm,
         language=ML,mathescape=true, 
         morekeywords={Box, box, ->, .., ||, |, *, **, net}}
+        
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[final]{pdfpages}
 
 \begin{document}
 
 \begin{changelog}
-\change{29/01/19}{Vladimir Janjic}{USTAN}{Original Version}  
+    \change{25/01/19}{V Janjic}{USTAN}{Original Version} 
+    \change{26/01/19}{E Blackledge}{SOPRA}{Version 001.000} 
+    \change{26/01/19}{AF Vermeulen}{SOPRA}{Version 001.000} 
 \end{changelog}
 
 \clearpage
-\input{exec_summary.tex}
+\input{0100-exec_summary.tex}
 \clearpage
 \tableofcontents
 \clearpage
-\input{introduction.tex}
-\input{body.tex}
-%\input{conclusion.tex}
+\input{0200-introduction.tex}
+\input{0300-body.tex}
+\input{0400-conclusion.tex}
+\input{0500-appendixes.tex}
 
-%\bibliography{RePhrase}{}
-%\bibliographystyle{plain}
+\bibliography{0900-serums.bib}{}
+\bibliographystyle{plain}
 
 \end{document}

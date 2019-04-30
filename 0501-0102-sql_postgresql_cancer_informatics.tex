@@ -1,0 +1,306 @@
+\begin{lstlisting}
+
+-- Database generated with pgModeler (PostgreSQL Database Modeler).
+-- pgModeler  version: 0.9.2-alpha1
+-- PostgreSQL version: 11.0
+-- Project Site: pgmodeler.io
+-- Model Author: ---
+
+
+-- Database creation must be done outside a multicommand file.
+-- These commands were put in this file only as a convenience.
+-- -- object: dv_chemocare_treatment_db | type: DATABASE --
+-- -- DROP DATABASE IF EXISTS dv_chemocare_treatment_db;
+-- CREATE DATABASE dv_chemocare_treatment_db;
+-- -- ddl-end --
+-- 
+
+-- object: public.hub_person | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_person CASCADE;
+CREATE TABLE public.hub_person (
+	chi int4 NOT NULL GENERATED ALWAYS AS IDENTITY ,
+	CONSTRAINT hub_person_pk PRIMARY KEY (chi)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_person OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.hub_time | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_time CASCADE;
+CREATE TABLE public.hub_time (
+	id serial NOT NULL,
+	CONSTRAINT hub_time_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_time OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_person_patient_measurements | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_person_patient_measurements CASCADE;
+CREATE TABLE public.sat_person_patient_measurements (
+	id serial NOT NULL,
+	age_at_diagnosis float,
+	height decimal(3,2),
+	weight decimal(4,1),
+	surface_area decimal(3,2),
+	chi_hub_person int4 NOT NULL,
+	CONSTRAINT sat_person_patient_measurements_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_person_patient_measurements OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.hub_object | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_object CASCADE;
+CREATE TABLE public.hub_object (
+	id serial NOT NULL,
+	CONSTRAINT hub_object_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_object OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_time_appointment_date | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_time_appointment_date CASCADE;
+CREATE TABLE public.sat_time_appointment_date (
+	id serial NOT NULL,
+	appointment_date date,
+	id_hub_time integer NOT NULL,
+	CONSTRAINT sat_time_appointment_date_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_time_appointment_date OWNER TO postgres;
+-- ddl-end --
+
+-- object: public."sat_time_last-toxicity_date" | type: TABLE --
+-- DROP TABLE IF EXISTS public."sat_time_last-toxicity_date" CASCADE;
+CREATE TABLE public."sat_time_last-toxicity_date" (
+	id serial NOT NULL,
+	last_toxicity_date date,
+	id_hub_time integer NOT NULL,
+	CONSTRAINT "sat_time_last-toxicity_date_pk" PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public."sat_time_last-toxicity_date" OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_object_tumour_group | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_object_tumour_group CASCADE;
+CREATE TABLE public.sat_object_tumour_group (
+	id serial NOT NULL,
+	tumour_group varchar(255),
+	id_hub_object integer NOT NULL,
+	CONSTRAINT sat_object_tumour_group_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_object_tumour_group OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_person_consultant_chemo | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_person_consultant_chemo CASCADE;
+CREATE TABLE public.sat_person_consultant_chemo (
+	id serial NOT NULL,
+	consultant_code char(2),
+	chi_hub_person int4 NOT NULL,
+	CONSTRAINT sat_person_consultant_chemo_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_person_consultant_chemo OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.hub_event | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_event CASCADE;
+CREATE TABLE public.hub_event (
+	id serial NOT NULL,
+	CONSTRAINT hub_event_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_event OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_object_drug_details | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_object_drug_details CASCADE;
+CREATE TABLE public.sat_object_drug_details (
+	id serial NOT NULL,
+	drug_type char(9),
+	drug_name varchar(255),
+	given_drug decimal(72),
+	drug_dose decimal(7,2),
+	required_dose decimal(7,2),
+	id_hub_object integer NOT NULL,
+	CONSTRAINT sat_object_drug_details_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_object_drug_details OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_object_treatment_details | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_object_treatment_details CASCADE;
+CREATE TABLE public.sat_object_treatment_details (
+	id serial NOT NULL,
+	intention varchar(255),
+	regime varchar(255),
+	cycle int4,
+	id_hub_object integer NOT NULL,
+	CONSTRAINT sat_object_treatment_details_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_object_treatment_details OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.sat_event_drug_status | type: TABLE --
+-- DROP TABLE IF EXISTS public.sat_event_drug_status CASCADE;
+CREATE TABLE public.sat_event_drug_status (
+	id serial NOT NULL,
+	drug_status varchar(255),
+	id_hub_event integer NOT NULL,
+	CONSTRAINT sat_event_drug_status_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.sat_event_drug_status OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.many_hub_person_has_many_hub_time | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_hub_person_has_many_hub_time CASCADE;
+CREATE TABLE public.many_hub_person_has_many_hub_time (
+	chi_hub_person int4 NOT NULL,
+	id_hub_time integer NOT NULL,
+	id serial NOT NULL,
+	CONSTRAINT many_hub_person_has_many_hub_time_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+
+-- object: hub_person_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_time DROP CONSTRAINT IF EXISTS hub_person_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_time ADD CONSTRAINT hub_person_fk FOREIGN KEY (chi_hub_person)
+REFERENCES public.hub_person (chi) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_time_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_time DROP CONSTRAINT IF EXISTS hub_time_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_time ADD CONSTRAINT hub_time_fk FOREIGN KEY (id_hub_time)
+REFERENCES public.hub_time (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_hub_person_has_many_hub_object | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_hub_person_has_many_hub_object CASCADE;
+CREATE TABLE public.many_hub_person_has_many_hub_object (
+	chi_hub_person int4 NOT NULL,
+	id_hub_object integer NOT NULL,
+	id serial NOT NULL,
+	CONSTRAINT many_hub_person_has_many_hub_object_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+
+-- object: hub_person_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_object DROP CONSTRAINT IF EXISTS hub_person_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_object ADD CONSTRAINT hub_person_fk FOREIGN KEY (chi_hub_person)
+REFERENCES public.hub_person (chi) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_object_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_object DROP CONSTRAINT IF EXISTS hub_object_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_object ADD CONSTRAINT hub_object_fk FOREIGN KEY (id_hub_object)
+REFERENCES public.hub_object (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: public.many_hub_person_has_many_hub_event | type: TABLE --
+-- DROP TABLE IF EXISTS public.many_hub_person_has_many_hub_event CASCADE;
+CREATE TABLE public.many_hub_person_has_many_hub_event (
+	chi_hub_person int4 NOT NULL,
+	id_hub_event integer NOT NULL,
+	id serial NOT NULL,
+	CONSTRAINT many_hub_person_has_many_hub_event_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+
+-- object: hub_person_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_event DROP CONSTRAINT IF EXISTS hub_person_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_event ADD CONSTRAINT hub_person_fk FOREIGN KEY (chi_hub_person)
+REFERENCES public.hub_person (chi) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_event_fk | type: CONSTRAINT --
+-- ALTER TABLE public.many_hub_person_has_many_hub_event DROP CONSTRAINT IF EXISTS hub_event_fk CASCADE;
+ALTER TABLE public.many_hub_person_has_many_hub_event ADD CONSTRAINT hub_event_fk FOREIGN KEY (id_hub_event)
+REFERENCES public.hub_event (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_person_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_person_consultant_chemo DROP CONSTRAINT IF EXISTS hub_person_fk CASCADE;
+ALTER TABLE public.sat_person_consultant_chemo ADD CONSTRAINT hub_person_fk FOREIGN KEY (chi_hub_person)
+REFERENCES public.hub_person (chi) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_person_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_person_patient_measurements DROP CONSTRAINT IF EXISTS hub_person_fk CASCADE;
+ALTER TABLE public.sat_person_patient_measurements ADD CONSTRAINT hub_person_fk FOREIGN KEY (chi_hub_person)
+REFERENCES public.hub_person (chi) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_time_fk | type: CONSTRAINT --
+-- ALTER TABLE public."sat_time_last-toxicity_date" DROP CONSTRAINT IF EXISTS hub_time_fk CASCADE;
+ALTER TABLE public."sat_time_last-toxicity_date" ADD CONSTRAINT hub_time_fk FOREIGN KEY (id_hub_time)
+REFERENCES public.hub_time (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_time_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_time_appointment_date DROP CONSTRAINT IF EXISTS hub_time_fk CASCADE;
+ALTER TABLE public.sat_time_appointment_date ADD CONSTRAINT hub_time_fk FOREIGN KEY (id_hub_time)
+REFERENCES public.hub_time (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_object_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_object_tumour_group DROP CONSTRAINT IF EXISTS hub_object_fk CASCADE;
+ALTER TABLE public.sat_object_tumour_group ADD CONSTRAINT hub_object_fk FOREIGN KEY (id_hub_object)
+REFERENCES public.hub_object (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_object_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_object_drug_details DROP CONSTRAINT IF EXISTS hub_object_fk CASCADE;
+ALTER TABLE public.sat_object_drug_details ADD CONSTRAINT hub_object_fk FOREIGN KEY (id_hub_object)
+REFERENCES public.hub_object (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_object_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_object_treatment_details DROP CONSTRAINT IF EXISTS hub_object_fk CASCADE;
+ALTER TABLE public.sat_object_treatment_details ADD CONSTRAINT hub_object_fk FOREIGN KEY (id_hub_object)
+REFERENCES public.hub_object (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+-- object: hub_event_fk | type: CONSTRAINT --
+-- ALTER TABLE public.sat_event_drug_status DROP CONSTRAINT IF EXISTS hub_event_fk CASCADE;
+ALTER TABLE public.sat_event_drug_status ADD CONSTRAINT hub_event_fk FOREIGN KEY (id_hub_event)
+REFERENCES public.hub_event (id) MATCH FULL
+ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ddl-end --
+
+\end{lstlisting}

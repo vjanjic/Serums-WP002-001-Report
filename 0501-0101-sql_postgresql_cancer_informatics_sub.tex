@@ -1,0 +1,25 @@
+\begin{lstlisting}
+
+-- object: public.hub_person | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_person CASCADE;
+CREATE TABLE public.hub_person (
+	chi int4 NOT NULL GENERATED ALWAYS AS IDENTITY ,
+	CONSTRAINT hub_person_pk PRIMARY KEY (chi)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_person OWNER TO postgres;
+-- ddl-end --
+
+-- object: public.hub_time | type: TABLE --
+-- DROP TABLE IF EXISTS public.hub_time CASCADE;
+CREATE TABLE public.hub_time (
+	id serial NOT NULL,
+	CONSTRAINT hub_time_pk PRIMARY KEY (id)
+
+);
+-- ddl-end --
+ALTER TABLE public.hub_time OWNER TO postgres;
+-- ddl-end --
+
+\end{lstlisting}

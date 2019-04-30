@@ -1,0 +1,327 @@
+\begin{lstlisting}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<schema name="public" layer="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="hub_person" layer="0" collapse-mode="2" max-obj-count="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="180"/>
+	<column name="chi" alias="PATIENT IDENTIFICATION NUMBER" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="hub_person_pk" type="pk-constr" table="public.hub_person">
+		<columns names="chi" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="hub_time" layer="0" collapse-mode="2" max-obj-count="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="180"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="hub_time_pk" type="pk-constr" table="public.hub_time">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_person_patient_measurements" layer="0" collapse-mode="2" max-obj-count="7">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="360"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="age_at_diagnosis">
+		<type name="float" length="0"/>
+	</column>
+	<column name="height">
+		<type name="decimal" length="3" precision="2"/>
+	</column>
+	<column name="weight">
+		<type name="decimal" length="4" precision="1"/>
+	</column>
+	<column name="surface_area">
+		<type name="decimal" length="3" precision="2"/>
+	</column>
+	<constraint name="sat_person_patient_measurements_pk" type="pk-constr" table="public.sat_person_patient_measurements">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="hub_object" layer="0" collapse-mode="2" max-obj-count="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="180"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="hub_object_pk" type="pk-constr" table="public.hub_object">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_time_appointment_date" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="appointment_date">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="sat_time_appointment_date_pk" type="pk-constr" table="public.sat_time_appointment_date">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_time_last-toxicity_date" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="100" y="20"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="last_toxicity_date">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="sat_time_last-toxicity_date_pk" type="pk-constr" table="public.&quot;sat_time_last-toxicity_date&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_object_tumour_group" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="20"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="tumour_group">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="sat_object_tumour_group_pk" type="pk-constr" table="public.sat_object_tumour_group">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_person_consultant_chemo" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="40"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="consultant_code">
+		<type name="char" length="2"/>
+	</column>
+	<constraint name="sat_person_consultant_chemo_pk" type="pk-constr" table="public.sat_person_consultant_chemo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="hub_event" layer="0" collapse-mode="2" max-obj-count="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="hub_event_pk" type="pk-constr" table="public.hub_event">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_object_drug_details" layer="0" collapse-mode="2" max-obj-count="8">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1160" y="60"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="drug_type">
+		<type name="char" length="9"/>
+	</column>
+	<column name="drug_name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="given_drug">
+		<type name="decimal" length="72"/>
+	</column>
+	<column name="drug_dose">
+		<type name="decimal" length="7" precision="2"/>
+	</column>
+	<column name="required_dose">
+		<type name="decimal" length="7" precision="2"/>
+	</column>
+	<constraint name="sat_object_drug_details_pk" type="pk-constr" table="public.sat_object_drug_details">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_object_treatment_details" layer="0" collapse-mode="2" max-obj-count="6">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1160" y="280"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="intention">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="regime">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="cycle">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="sat_object_treatment_details_pk" type="pk-constr" table="public.sat_object_treatment_details">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sat_event_drug_status" layer="0" collapse-mode="2" max-obj-count="3">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="820" y="480"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="drug_status">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="sat_event_drug_status_pk" type="pk-constr" table="public.sat_event_drug_status">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="many_hub_person_has_many_hub_time" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#a0138f"
+	 src-table="public.hub_person"
+	 dst-table="public.hub_time"
+	 src-required="false" dst-required="false"
+	 single-pk-col="true"
+	 table-name="many_hub_person_has_many_hub_time"/>
+
+<relationship name="many_hub_person_has_many_hub_object" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#32b689"
+	 src-table="public.hub_person"
+	 dst-table="public.hub_object"
+	 src-required="false" dst-required="false"
+	 single-pk-col="true"
+	 table-name="many_hub_person_has_many_hub_object"/>
+
+<relationship name="many_hub_person_has_many_hub_event" type="relnn" layer="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 custom-color="#0bd416"
+	 src-table="public.hub_person"
+	 dst-table="public.hub_event"
+	 src-required="false" dst-required="false"
+	 single-pk-col="true"
+	 table-name="many_hub_person_has_many_hub_event"/>
+
+<relationship name="hub_person_has_many_sat_person_consultant_chemo" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#bc1c77"
+	 src-table="public.hub_person"
+	 dst-table="public.sat_person_consultant_chemo"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="hub_person_has_many_sat_person_patient_measurements" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f3b73f"
+	 src-table="public.hub_person"
+	 dst-table="public.sat_person_patient_measurements"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="hub_time_has_many_sat_time_last-toxicity_date" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#fbbf8c"
+	 src-table="public.hub_time"
+	 dst-table="public.&quot;sat_time_last-toxicity_date&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="hub_time_has_many_sat_time_appointment_date" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#1c83ef"
+	 src-table="public.hub_time"
+	 dst-table="public.sat_time_appointment_date"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="hub_object_has_many_sat_object_tumour_group" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#ae85df"
+	 src-table="public.hub_object"
+	 dst-table="public.sat_object_tumour_group"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="hub_object_has_many_sat_object_drug_details" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#213edb"
+	 src-table="public.hub_object"
+	 dst-table="public.sat_object_drug_details"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-26.1264" y="-56.8607"/>
+	</label>
+</relationship>
+
+<relationship name="hub_object_has_many_sat_object_treatment_details" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e7475c"
+	 src-table="public.hub_object"
+	 dst-table="public.sat_object_treatment_details"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-16.1264" y="-34.2607"/>
+	</label>
+</relationship>
+
+<relationship name="hub_event_has_many_sat_event_drug_status" type="rel1n" layer="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#2b4c13"
+	 src-table="public.hub_event"
+	 dst-table="public.sat_event_drug_status"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="28.3947" y="-1.66066"/>
+	</label>
+</relationship>
+
+\end{lstlisting}

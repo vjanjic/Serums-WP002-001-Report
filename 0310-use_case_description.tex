@@ -1,0 +1,27 @@
+The core use of the Smart Patient Electronic Health Record (SPEHR) is to create a singular electronic health record that the patient has autonomous control over as per General Data Protection Regulation (GDPR). \cite{InformationCommissionersOffice2018}
+%\\ \\
+%\noindent
+One of the objectives of the \textbf{Serums} project is to understand what is required to derive a \emph{universal} Smart Patient Health Record format that will be applicable to a wide variety of different use cases that manipulate patient data, as well as what techniques and methodologies are required for a practical implementation of this format. We are especially concerned with providing the patient a possibility to grant specific granular-level access to the record to the approved service providers and be able to revoke the access if required.
+
+In this section, we describe the use case that we have used to derive an initial version of the smart patient record format. Our focus was on the use case provided by the \textbf{USTAN} project partner, but we are aiming to show that the proposed format in Section~\ref{chap:sphf} is also applicable to the other use cases considered in the project.
+%\\ \\
+%\noindent
+%Work Package 2 is the construction of this Smart Patient Electronic Health Record.
+
+\section{Edinburgh Cancer Data Gateway with integrated Patient Reported Outcome Measures (PROMS)} 
+\label{sec:usecasecancer}
+We aim to build a predictor within NHS Lothian for toxicity levels from treatment regimens for cancer patients with or without comorbidities. Giving patients the opportunity to give more accurate information on their symptoms throughout the treatment (possibly daily whilst at home), and combining that information with patient characteristics, cancer information and treatment regimen, will allow clinicians to adapt treatments better to individual patients with better patient outcomes and controlled toxicity levels. Further data from hospitalisations and comorbidities will contribute to a more accurate prediction.
+
+
+The Edinburgh Cancer Centre (ECC), based in the Western General Hospital (WGH), contains National Health Service Lothian (NHS Lothian) cancer patient data from multiple resources, scattered across different systems and platforms. This makes it difficult to use the information collected in a useful way. There is a lack of proxy between the different (sub)systems or mechanisms to join the information automatically. This information includes some coming directly from oncology (Chemocare, SES Oncology DB, SMR6, etc) but also data on hospitalisations (SMR1), cause of death (NRS COD), Charlson Comorbidity Index (CCI), prescribing and other patient information. When this data is combined, it can be used to give a more accurate picture as to how patients are treated and how their treatment could be improved to consider comorbidities, reduce toxicity, serious side effects, etc. Chemotherapy often leads to increased toxicity levels and it may be desirable to compare the likelihood of increased toxicity for certain patients on given treatment regimes in the presence of comorbidities, especially when these comorbidities introduce further medications that exacerbate toxicity levels. Our Cancer Data Gateway aims to improve the quality and capability of reporting outcomes within South East Scotland Oncology databases in real time using routinely captured and integrated electronic healthcare data.
+
+
+The development of our use case will be done in three stages:
+\begin{enumerate}
+    \item We will use oncology data, SMR1, NRS COD and CCI as the comorbidity indicator for the predictor of toxicity
+    \item Where instead of CCI we add detailed prescribing data to more accurately predict toxicity of chemotherapy treatments when taking further medications
+    \item Adding further patient information gained from Patient Reported Outcome Measures (PROMS)
+\end{enumerate}
+We will develop a simple and user-friendly web application for patients to provide information on symptoms, etc, on a daily basis. Usually PROMS are based on questionnaires, and we will discuss with the clinical team how these questionnaires will be designed and integrated in a web-based approach. This information will be integrated with other information available on the patient, and enable clinical staff to change/add medications and decisions on patient treatments. We want to add PROMS as a mechanism to further enrich the information available on the system to symptoms that patients have in between treatments to have a more accurate picture as to how their toxicity would increase. It is known that PROMS can be used to improve the quality of life and even survival for some forms of cancer.
+
+We will develop a model based on advanced analysis of this data to enable us to hand over the metadata structure to IBM to assist them to synthesise data. It is this synthesised data that will be used to build and test the access rights and the machine learning models in order to protect patient privacy. 

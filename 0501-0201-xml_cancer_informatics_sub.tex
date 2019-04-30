@@ -1,0 +1,16 @@
+\begin{lstlisting}
+
+<table name="hub_person" layer="0" collapse-mode="2" max-obj-count="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="440" y="180"/>
+	<column name="chi" alias="PATIENT IDENTIFICATION NUMBER" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="hub_person_pk" type="pk-constr" table="public.hub_person">
+		<columns names="chi" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+\end{lstlisting}

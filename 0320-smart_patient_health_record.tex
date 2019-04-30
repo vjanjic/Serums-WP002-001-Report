@@ -1,0 +1,93 @@
+\section{Universal Smart Patient Health Record (USPHR)}
+
+\input{0321-0100-Universal_Smart_Patient_Health_Record.tex}
+
+\section{General Data Vault}
+
+\input{0321-0200-data_vault.tex}
+
+\section{Smart Patient Electronic Health Record - Cancer.Informatics}
+
+(See: Cancer.Informatics Use Case \ref{chap:usecase})
+
+\section{Use Case Description}
+
+(See: Cancer.Informatics Use Case Description \ref{sec:usecasecancer})
+
+\section{Entity Relationship Diagram (ERD) - Cancer.Informatics}
+
+This Entity Relationship Diagram (ERD) shows the details for the first source system from University of St Andrews the team use to show how the sources system is stored in its native form in the health care ecosystem.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{figures/technical/dv_chemocare_treatment_db.png}
+    \caption{ERD - Cancer.Informatics}
+    \label{fig:figERD_CancerInformatics}
+\end{figure}
+
+\section{Hierarchical Data Format version 5 (HDF5)}
+
+Hierarchical Data Format (HDF) is a set of file formats of which HDF5 is the version 5. It is design with basic principals to store and organise large amounts of data. \ref{fig:figHDF5} \cite{Folk2011}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm]{figures/technical/HDF5.png}
+    \caption{Hierarchical Data Format (HDF) version 5}
+    \label{fig:figHDF5}
+\end{figure}
+
+The research project is using a \href{https://pypi.org/project/h5py/}{H5Py} library to build and maintain the data.
+
+The record is structured using HDF groups that supports the core hubs of the data vault.
+
+These hubs are:
+
+\begin{itemize}
+    \item Time
+    
+    The project support ISO 8601-1:2019 (\url{https://www.iso.org/obp/ui#iso:std:iso:8601:-1:ed-1:v1:en})
+    and ISO 8601-2:2019 Notation 
+    (\url{https://www.iso.org/obp/ui#iso:std:iso:8601:-2:ed-1:v1:en})
+    for date format. \\
+    Datetime with time zone (yyyy-mm-ddThh:mm:ss.nnnnnn+|-hh:mm)
+    
+    
+    \item Person
+    Core information on the persons involve in the health-care process.
+    These can be patient, medical staff or other authorised persons.
+    The role of the person is determine by a person role type in the hub.
+    
+    \item Object
+    Core information on the objects involve in the health-care process.
+    These can be blood samples, hospital beds etc.
+    The role of the object is determine by a object role type in the hub.
+    
+    \item Location
+    Core information on the locations involve in the health-care process.
+    Project supports ISO 6709:2008 Standard. (\url{https://www.iso.org/standard/39242.html})
+    
+    
+    The location is to one thousandth of a latitude and longitude (i.e. to less than one square meter).
+    The role of the location is determine by a location role type in the hub.
+    Suggestion currently is a single type: latitude-longitude.
+    
+    \item Event
+    Core information on the events involve in the health-care process.
+    The role of the event is determine by a event role type in the hub.
+    Examples of events:
+    \begin{itemize}
+        \item Patient visit to doctor.
+        \item Patient takes medical test.
+        \item Patient performs Physiotherapy exercise with sensors attached.
+        \item Patient answer Prompts on Quality of Life question.
+    \end{itemize}
+    
+    
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{figures/technical/HDF5_TPOLE.png}
+    \caption{T-P-O-L-E HDF version 1.00}
+    \label{fig:figHDF5TPOLE}
+\end{figure}
